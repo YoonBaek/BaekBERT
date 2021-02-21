@@ -35,8 +35,9 @@ import torch
 from torch.utils.data import Dataset, DataLoader, TensorDataset
 from torch.optim.lr_scheduler import ExponentialLR, CosineAnnealingWarmRestarts
 
+from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
 from pytorch_lightning import LightningModule, Trainer, seed_everything
-from pytorch_lightning.callbacks import ModelCheckpoint
+
 
 from transformers import BertForSequenceClassification, BertTokenizer, AdamW
 
@@ -54,13 +55,13 @@ class Arg:
     pretrained_model: str = 'beomi/kcbert-large' # korean comment pretrained set load
     pretrained_tokenizer: str = 'beomi/kcbert-base'
     auto_batch_size: str = 'power'  # by 최적의 batch를 찾아주는 기능이나, 여기서는 미사용. batch_size 입력시 자동으로 off
-    batch_size: int = 16
+    batch_size: int = 32
     lr: float = 5e-6  
-    epochs: int = 5 
-    max_length: int = 150  
-    report_cycle: int = 100 # Report (Train Metrics) Cycle
-    train_data_path: str = "train_dataset.csv"  # Train Dataset file 
-    val_data_path: str = "valid_dataset.csv"  # Validation Dataset file 
+    epochs: int = 1
+    max_length: int = 125  
+    report_cycle: int = 50 # Report (Train Metrics) Cycle
+    train_data_path: str = "data/train_dataset.csv"  # Train Dataset file 
+    val_data_path: str = "data/valid_dataset.csv"  # Validation Dataset file 
     cpu_workers: int = 0 # Multi cpu workers
     test_mode: bool = False  # Test Mode enables `fast_dev_run`
     optimizer: str = 'AdamW'  # AdamW vs AdamP
@@ -69,9 +70,9 @@ class Arg:
     tpu_cores: int = 0  # Enable TPU with 1 core or 8 cores
 
 args = Arg()
-
+lr_monitor = LearningRateMonitor(logging_interval='step')
 # args.tpu_cores = 8  # Enables TPU
-args.fp16 = False  # Enables GPU FP16
+args.fp16 = True  # Enables GPU FP16
 # args.batch_size = 16  # Force setup batch_size
 
 class Model(LightningModule):
@@ -257,7 +258,7 @@ def main():
     print("Fix Seed:", args.random_seed)
     seed_everything(args.random_seed)
     model = Model(args)
-cd
+
     print(":: Start Training ::")
     trainer = Trainer(
         max_epochs=args.epochs,
@@ -267,8 +268,9 @@ cd
         # For GPU Setup
         deterministic=torch.cuda.is_available(),
         # gpus=-1 if torch.cuda.is_available() else None,
-        gpus=-1 if torch.cuda.is_available() else None,
-        precision=16 if args.fp16 else 32
+        gpus=2 if torch.cuda.is_available() else None,
+        precision=16 if args.fp16 else 32,
+        callbacks=[lr_monitor]
         # For TPU Setup
         # tpu_cores=args.tpu_cores if args.tpu_cores else None,
     )
