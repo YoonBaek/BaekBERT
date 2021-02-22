@@ -5,11 +5,11 @@ See you soon!
 
 # How to use
 1. train
-cd traintest
+cd traintest  
 python main.py
 
 2. test(infer)
-cd traintest
+cd traintest  
 python infer.py
 
 # Reference
