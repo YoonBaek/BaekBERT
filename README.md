@@ -21,9 +21,9 @@ cd traintest
 python infer.py
 
 # infer results
-![cap1](./imgs/cap1.png)  
-![cap2](./imgs/cap2.png)  
-![cap3](./imgs/cap3.png)
+![cap1](./imgs/cap1.jpg)  
+![cap2](./imgs/cap2.jpg)  
+![cap3](./imgs/cap3.jpg)
 
 # Pretrained Models
 You can check my model here!
