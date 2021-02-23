@@ -20,6 +20,11 @@ python main.py
 cd traintest  
 python infer.py
 
+# infer results
+![cap1](./imgs/cap1.png)  
+![cap2](./imgs/cap2.png)  
+![cap3](./imgs/cap3.png)
+
 # Pretrained Models
 You can check my model here!
 BaekBERT Pretrained Model [Download here](https://drive.google.com/file/d/1J_wdSEY1W6Q_qDRnFYiohGUbyd2qh_ss/view?usp=sharing)
