@@ -20,6 +20,10 @@ python main.py
 cd traintest  
 python infer.py
 
+# Pretrained Models
+You can check my model here!
+BaekBERT Pretrained Model [Download here](https://drive.google.com/file/d/1J_wdSEY1W6Q_qDRnFYiohGUbyd2qh_ss/view?usp=sharing)
+
 # Reference
 [KcBERT: Korean comments BERT](https://github.com/Beomi/KcBERT)
 
