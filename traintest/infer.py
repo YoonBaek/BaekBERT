@@ -25,7 +25,6 @@ model.load_state_dict({k[5:]: v for k, v in ckp['state_dict'].items()})
 model.to(device)
 model.eval()
 
-print()
 def read_data(path):
     if path.endswith('xlsx'):
         return pd.read_excel(path)
@@ -50,14 +49,14 @@ def preprocess_dataframe(df):
         x = x.strip()
         x = repeat_normalize(x, num_repeats=2)
         return x
-
-    df['txt'] = df['txt'].map(lambda x: tokenizer.encode(
+    result_frame = pd.DataFrame()
+    result_frame['txt'] = df['txt'].map(lambda x: tokenizer.encode(
         clean(str(x)),
         padding='max_length',
         max_length=150,
         truncation=True,
     ))
-    return df
+    return result_frame
 
 def test_dataloader(inferset):
     df = preprocess_dataframe(inferset)
@@ -75,6 +74,7 @@ def test_dataloader(inferset):
 inferset = read_data(test_path)
 test_loader = test_dataloader(inferset)
 start = time()
+
 with torch.no_grad():
     '''
     훈련한 모델을 탑재해서 하나하나 돌려봤습니다.
@@ -99,5 +99,6 @@ with torch.no_grad():
 
 inferset['scores'] = scores
 inferset['preds'] = preds
+# print(inferset)
 
 inferset.to_csv('result.csv', encoding = 'utf-8-sig')
