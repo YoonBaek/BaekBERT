@@ -63,7 +63,7 @@ def test_dataloader(inferset):
     dataset = TensorDataset(
         torch.tensor(df['txt'].to_list(), dtype=torch.long),
     )
-    print()
+    
     return DataLoader(
         dataset,
         batch_size=1,
