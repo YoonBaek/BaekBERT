@@ -1,4 +1,4 @@
-from main import Model, Arg
+from main import Arg
 import pandas as pd
 from time import time
 import torch
@@ -11,7 +11,7 @@ import emoji
 from soynlp.normalizer import repeat_normalize
 
 finetune_ckpt = './lightning_logs/version_0/checkpoints/epoch=2-step=917.ckpt'
-test_path = '../data/inferset.csv'
+test_path = '../data/testset/inferset.csv'
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 args = Arg()
 
