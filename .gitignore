@@ -1,4 +1,4 @@
 lightning_logs
-dataset.txt
-inferset.csv
-result.csv
+data/testset/dataset.txt
+data/testset/inferset.csv
+data/result.csv
