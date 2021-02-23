@@ -49,5 +49,5 @@ BaekBERT Pretrained Model [Download here](https://drive.google.com/file/d/1J_wdS
 원하는 데이터셋에 직접 infererence 해보실 수 있습니다.  
 
 # Reference
-[KcBERT: Korean comments BERT](https://github.com/Beomi/KcBERT)
+[KcBERT: Korean comments BERT](https://github.com/Beomi/KcBERT)  
 [Transformers by HuggingFace](https://github.com/huggingface/transformers)
