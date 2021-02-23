@@ -26,7 +26,7 @@ Negative : 자체 크롤링한 게임관련 게시글 데이터셋
 Private
 
 # How to use
-0.  
+0. setup  
 pip install -r requirements.txt  
 
 1. finetune  
