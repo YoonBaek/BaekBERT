@@ -3,14 +3,13 @@ import pandas as pd
 from time import time
 import torch
 from torch.utils.data import DataLoader, TensorDataset
-from pytorch_lightning import Trainer
 from transformers import BertForSequenceClassification, BertTokenizer, BertConfig
 
 import re
 import emoji
 from soynlp.normalizer import repeat_normalize
 
-finetune_ckpt = './lightning_logs/version_0/checkpoints/epoch=2-step=917.ckpt'
+finetune_ckpt = './your_local_path/BaekBERT.ckpt'
 test_path = '../data/testset/inferset.csv'
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 args = Arg()
