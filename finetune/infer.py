@@ -1,4 +1,4 @@
-from main import Arg
+from finetune import Arg
 import pandas as pd
 from time import time
 import torch
