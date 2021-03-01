@@ -29,14 +29,20 @@ Private
 파이썬은 버전 3.6.9에서 테스트를 진행했습니다.
 
 0. setup  
+'''
 pip install -r requirements.txt  
+'''
 
 1. finetune  
+'''
 cd finetune 
-python main.py
+python finetune.py
+'''
 
 2. infer   
+'''
 python infer.py
+'''
 
 # infer results
 ![cap1](./imgs/cap1.jpg)  
